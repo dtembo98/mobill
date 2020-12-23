@@ -12,18 +12,10 @@ import Screen from './app/components/Screen';
 import Icon from './app/components/Icon';
 import ListItemDeleteAction from './app/components/ListItemDeleteAction';
 import ListItem from './app/components/ListItem';
+import AccountScreen from './app/screens/AccountScreen';
 
 export default function App() {
-	return (
-		<View
-		// style={}
-		>
-			{/* <MessageScreen /> */}
-			<Screen>
-				<ListItem title='Title' subTitle='subtitle' />
-			</Screen>
-		</View>
-	);
+	return <AccountScreen />;
 }
 
 const styles = StyleSheet.create({
