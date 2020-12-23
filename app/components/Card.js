@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import colors from '../config/colors';
 import AppText from './AppText';
-
+import ListItem from '../components/ListItem';
 function Card({ title, subtitle, image }) {
 	return (
 		<View style={styles.card}>
@@ -11,11 +11,7 @@ function Card({ title, subtitle, image }) {
 				<AppText style={styles.title}>{title}</AppText>
 				<AppText style={styles.subTitle}>{subtitle}</AppText>
 			</View>
-			<ListItem
-				image={require('../assets/image_5.jpg')}
-				title='David'
-				subTitle='4 listing'
-			/>
+			<ListItem image={require('../assets/image_5.jpg')} title subTitle />
 		</View>
 	);
 }

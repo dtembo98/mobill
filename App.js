@@ -13,9 +13,10 @@ import Icon from './app/components/Icon';
 import ListItemDeleteAction from './app/components/ListItemDeleteAction';
 import ListItem from './app/components/ListItem';
 import AccountScreen from './app/screens/AccountScreen';
+import ListingsScreen from './app/screens/ListingsScreen';
 
 export default function App() {
-	return <AccountScreen />;
+	return <ListingsScreen />;
 }
 
 const styles = StyleSheet.create({
