@@ -1,5 +1,5 @@
-import React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React,{useState} from 'react';
+import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import AppText from './app/components/AppText';
@@ -14,25 +14,17 @@ import ListItemDeleteAction from './app/components/ListItemDeleteAction';
 import ListItem from './app/components/ListItem';
 import AccountScreen from './app/screens/AccountScreen';
 import ListingsScreen from './app/screens/ListingsScreen';
+import AppTextInput from './app/components/AppTextInput';
+import { Switch } from 'react-native-gesture-handler';
+import AppPicker from './app/components/AppPicker';
+import LoginScreen from './app/screens/LoginScreen';
+
 
 export default function App() {
-	return <ListingsScreen />;
+	
+	return <LoginScreen/>
+
+
 }
 
-const styles = StyleSheet.create({
-	//styles for welcome screen
-	container: {
-		flex: 1,
-		backgroundColor: '#f8f4f4',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	//styles for viewimagescreen
 
-	ViewImageContainer: {
-		flex: 1,
-		backgroundColor: '#f8f4f4',
-		padding: 0,
-		paddingTop: 0,
-	},
-});

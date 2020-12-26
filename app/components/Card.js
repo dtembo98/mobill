@@ -3,15 +3,16 @@ import { View, StyleSheet, Image } from 'react-native';
 import colors from '../config/colors';
 import AppText from './AppText';
 import ListItem from '../components/ListItem';
-function Card({ title, subtitle, image }) {
+function Card({ title, subTitle, image }) {
+	
 	return (
 		<View style={styles.card}>
 			<Image style={styles.image} source={image} />
 			<View>
 				<AppText style={styles.title}>{title}</AppText>
-				<AppText style={styles.subTitle}>{subtitle}</AppText>
+				<AppText style={styles.subTitle}>{subTitle}</AppText>
 			</View>
-			<ListItem image={require('../assets/image_5.jpg')} title subTitle />
+			{/* <ListItem  title={title} subTitle={subtitle} /> */}
 		</View>
 	);
 }
