@@ -1,15 +1,9 @@
 import React from 'react';
 import Screen from '../components/Screen'
 import { Image, StyleSheet } from 'react-native'
-import AppTextInput from '../components/AppTextInput';
-import AppButton from '../components/AppButton';
-import {Formik} from 'formik'
 import * as yup from 'yup'
-import AppText from '../components/AppText';
-import ErrorMessage from '../components/ErrorMessage';
-import AppFormField from '../components/AppFormField';
-import SubmitButton from '../components/SubmitButton';
-import AppForm from '../components/AppForm';
+import { AppForm,AppFormField,SubmitButton } from "../components/forms/index";
+
 
 const validationSchema = yup.object().shape({
     email:yup.string().required().email().label("Email"),
@@ -23,7 +17,7 @@ function LoginScreen(props) {
     <Screen style={styles.container}>
         <Image 
         style={styles.logo}
-        source={require("../assets/mm_logo.png")}/>
+        source={require("../assets/MM_logo.jpg")}/>
 
 
 
@@ -54,42 +48,9 @@ function LoginScreen(props) {
        <SubmitButton title="Login"/>
            
         </AppForm>
-      
-      {/* <Formik
-        initialValues={{email:'',password:''}}
-        onSubmit={values =>console.log(values)}
-        validationSchema={validationSchema}
-        >
-            {
-                ({handleSubmit})=>(
-                      <>
-         <AppFormField
-        autoCapitalize="none"
-        autoCorrect={false}
-        keyboardType="email-address"
-        icon="email"
-        name="email"
-        placeholder="Email"
-        textContentType="emailAddress"
         
-        />
-        <AppFormField
-         autoCapitalize="none"
-         autoCorrect={false}
-         icon="lock"
-         name="password"
-         placeholder="password"
-         secureTextEntry
-         textContentType="password"
-          />
-    <SubmitButton title="Login"/>
       
-                      </>
-                )
-            }
-
-        </Formik> */}
-        
+    
       
     </Screen>
     );
