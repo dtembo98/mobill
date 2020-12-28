@@ -1,5 +1,13 @@
-import React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+	Button,
+	Image,
+	Platform,
+	StyleSheet,
+	Text,
+	TextInput,
+	View,
+} from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import AppText from './app/components/AppText';
@@ -14,25 +22,16 @@ import ListItemDeleteAction from './app/components/ListItemDeleteAction';
 import ListItem from './app/components/ListItem';
 import AccountScreen from './app/screens/AccountScreen';
 import ListingsScreen from './app/screens/ListingsScreen';
+import AppTextInput from './app/components/AppTextInput';
+import { Switch } from 'react-native-gesture-handler';
+import AppPicker from './app/components/AppPicker';
+import LoginScreen from './app/screens/LoginScreen';
+import ListingEditScreen from './app/screens/ListingEditScreen';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
+import ImageInput from './app/components/ImageInput';
+import ImageInputList from './app/components/ImageInputList';
 
 export default function App() {
-	return <ListingsScreen />;
+	return <ListingEditScreen />;
 }
-
-const styles = StyleSheet.create({
-	//styles for welcome screen
-	container: {
-		flex: 1,
-		backgroundColor: '#f8f4f4',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	//styles for viewimagescreen
-
-	ViewImageContainer: {
-		flex: 1,
-		backgroundColor: '#f8f4f4',
-		padding: 0,
-		paddingTop: 0,
-	},
-});
