@@ -11,7 +11,11 @@ function Card({ title, subtitle, image }) {
 				<AppText style={styles.title}>{title}</AppText>
 				<AppText style={styles.subTitle}>{subtitle}</AppText>
 			</View>
-			<ListItem image={require('../assets/image_5.jpg')} title subTitle />
+			<ListItem
+				image={require('../assets/image_5.jpg')}
+				title
+				subTitle
+			/>
 		</View>
 	);
 }
