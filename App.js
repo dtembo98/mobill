@@ -1,5 +1,13 @@
-import React,{useState,useEffect} from 'react';
-import { Button, Image, Platform, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+	Button,
+	Image,
+	Platform,
+	StyleSheet,
+	Text,
+	TextInput,
+	View,
+} from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import AppText from './app/components/AppText';
@@ -19,32 +27,11 @@ import { Switch } from 'react-native-gesture-handler';
 import AppPicker from './app/components/AppPicker';
 import LoginScreen from './app/screens/LoginScreen';
 import ListingEditScreen from './app/screens/ListingEditScreen';
-import * as ImagePicker from 'expo-image-picker'
-import * as Permissions from 'expo-permissions'
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 import ImageInput from './app/components/ImageInput';
 import ImageInputList from './app/components/ImageInputList';
 
 export default function App() {
-
-
-	const [imageUris,setImageUris] = useState([])
-	const handleAdd = uri =>{
-		setImageUris([...imageUris,uri])
-	}
-	const handleRemove = (uri) =>{
-		setImageUris(imageUris.filter(imageUri => imageUri !== uri ))
-	} 
-	
-	return <Screen>
- 
-	<ImageInputList
-	 imageUris={imageUris}
-	  onAddImage={handleAdd}
-	  onRemoveImage = {handleRemove}
-	  />
-	</Screen>
-
-
+	return <ListingEditScreen />;
 }
-
-
