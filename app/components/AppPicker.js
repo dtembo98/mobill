@@ -7,11 +7,14 @@ import defaultStyles from '../config/styles'
 import AppText from './AppText';
 import Screen from './Screen'
 import PickerItem from './PickerItem';
+import CategoryPickerItem from './CategoryPickerItem';
+
 
 function AppPicker({ icon,items, placeholder,onSelectItem,selectedItem,width="100%" ,numberOfColumns =1,PickerItemComponent = PickerItem}) {
     const [modalVisible,setModalVisible] = useState(false)
     return (
         <>
+        
         <TouchableWithoutFeedback onPress={() =>setModalVisible(true)}>
         <View style={[styles.container,{width}]}>
             {icon && <MaterialCommunityIcons
@@ -38,8 +41,10 @@ function AppPicker({ icon,items, placeholder,onSelectItem,selectedItem,width="10
          item={item}
          label={item.label} 
          onPress={() =>{
+             console.log("hello")
             setModalVisible(false)
             onSelectItem(item)
+            console.log(item)
          }}/>}/>
          
         </Modal>

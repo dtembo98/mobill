@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 import CategoryPickerItem from '../components/CategoryPickerItem';
-
+import * as Location from 'expo-location'
 import {
 	AppForm as Form,
 	AppFormField as FormField,
@@ -11,6 +11,8 @@ import {
 } from '../components/forms';
 import FormImagePicker from '../components/forms/FormImagePicker';
 import Screen from '../components/Screen';
+import useLocation from '../hooks/useLocation'
+ 
 
 const validationSchema = Yup.object().shape({
 	title: Yup.string().required().min(1).label('Title'),
@@ -24,25 +26,6 @@ const categories = [
 	{ label: 'Food', value: 1, backgroundColor: 'red', icon: 'food' },
 	{ label: 'Gloceries', value: 2, backgroundColor: 'green', icon: 'apps' },
 	{ label: 'Spicies', value: 3, backgroundColor: 'blue', icon: 'lock' },
-	{ label: 'Clothing', value: 4, backgroundColor: 'purple', icon: 'clothes' },
-	{
-		backgroundColor: '#fc5c65',
-		icon: 'floor-lamp',
-		label: 'Furniture',
-		value: 1,
-	},
-	{
-		backgroundColor: '#fd9644',
-		icon: 'car',
-		label: 'Cars',
-		value: 2,
-	},
-	{
-		backgroundColor: '#fed330',
-		icon: 'camera',
-		label: 'Cameras',
-		value: 3,
-	},
 	{
 		backgroundColor: '#26de81',
 		icon: 'cards',
@@ -79,9 +62,29 @@ const categories = [
 		label: 'Other',
 		value: 9,
 	},
+	{
+		backgroundColor: '#fc5c65',
+		icon: 'floor-lamp',
+		label: 'Furniture',
+		value: 10,
+	},
+	{
+		backgroundColor: '#fd9644',
+		icon: 'car',
+		label: 'Cars',
+		value: 11,
+	},
+	{
+		backgroundColor: '#fed330',
+		icon: 'camera',
+		label: 'Cameras',
+		value: 12,
+	},
 ];
 
 function ListingEditScreen() {
+    const location = useLocation()
+	
 	return (
 		<Screen style={styles.container}>
 			<Form
@@ -92,9 +95,9 @@ function ListingEditScreen() {
 					category: null,
 					images: [],
 				}}
-				onSubmit={(values) => console.log(values)}
+				onSubmit={(values) => console.log(location)}
 				validationSchema={validationSchema}>
-				<FormImagePicker name='images' />
+				<FormImagePicker name='images' /> 
 
 				<FormField maxLength={255} name='title' placeholder='Title' />
 				<FormField
@@ -102,12 +105,12 @@ function ListingEditScreen() {
 					maxLength={8}
 					name='price'
 					placeholder='Price'
-				/>
+				/>  
 				<Picker
 					items={categories}
 					name='category'
 					placeholder='Category'
-					PickerItemComponent={CategoryPickerItem}
+					//PickerItemComponent={CategoryPickerItem}
 					numberOfColumns={3}
 				/>
 				<FormField
