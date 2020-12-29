@@ -31,7 +31,19 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import ImageInput from './app/components/ImageInput';
 import ImageInputList from './app/components/ImageInputList';
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import AuthNavigator from './app/navigation/AuthNavigator';
+import navigationTheme from './app/navigation/navigationTheme';
+import AppNavigator from './app/navigation/AppNavigator';
+
+
 
 export default function App() {
-	return <ListingEditScreen />;
-}
+	
+	return <NavigationContainer theme={navigationTheme}>
+		{/* <AuthNavigator/> */}
+		<AppNavigator/>
+	</NavigationContainer>
+}  

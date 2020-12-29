@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, ImageBackground, StyleSheet, View, Text } from 'react-native';
 import AppButton from '../components/AppButton';
 
-function WelcomeScreen(props) {
+function WelcomeScreen({navigation}) {
 	return (
 		<ImageBackground
 			style={styles.background}
@@ -10,7 +10,7 @@ function WelcomeScreen(props) {
 			<View style={styles.logoContainer}>
 				<Image
 					style={styles.logo}
-					source={require('../assets/checkout.png')}
+					source={require('../assets/MM_logo.jpg')}
 				/>
 				<Text style={styles.tagLine}>
 					Accept Mobile Money Payments for your products
@@ -18,9 +18,9 @@ function WelcomeScreen(props) {
 			</View>
 
 			<View style={styles.ButtonsContainer}>
-				<AppButton title='Login' />
+				<AppButton title='Login' onPress={() =>navigation.navigate("Login")} />
 
-				<AppButton title='Register' color='secondary' />
+				<AppButton title='Register'  onPress={() =>navigation.navigate("Register")} color='secondary' />
 			</View>
 		</ImageBackground>
 	);

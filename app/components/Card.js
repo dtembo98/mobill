@@ -1,18 +1,20 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import colors from '../config/colors';
 import AppText from './AppText';
 import ListItem from '../components/ListItem';
-function Card({ title, subTitle, image }) {
+function Card({ title, subTitle, image,onPress }) {
 	return (
-		<View style={styles.card}>
+		<TouchableWithoutFeedback onPress={onPress}>
+			<View style={styles.card}>
 			<Image style={styles.image} source={image} />
 			<View>
 				<AppText style={styles.title}>{title}</AppText>
 				<AppText style={styles.subTitle}>{subTitle}</AppText>
 			</View>
-			<ListItem image={require('../assets/image_5.jpg')} title subTitle />
+			
 		</View>
+		</TouchableWithoutFeedback>
 	);
 }
 const styles = StyleSheet.create({
