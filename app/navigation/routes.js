@@ -8,6 +8,10 @@ export default Object.freeze(
         REGISTER:'Register',
         LISTINGS:'Listing',
         LISTINGS_EDIT:'ListingEdit',
-        FEED:'Feed'
+        FEED:'Feed',
+        SALE:'Sale',
+        BARCODE:'Barcode',
+        CHECKOUT:'Checkout',
+        SCANNER:'Scanner'
     }
 )

@@ -18,7 +18,7 @@ const AppNavigator = () =>
          size={size} />}}/>
     <Tab.Screen name="ListingEdit" component={ListingEditScreen}
          options={({navigation})=>({
-            tabBarButton:()=><NewListingButton onPress={()=>navigation.navigate(routes.LISTINGS_EDIT)}/>, 
+            tabBarButton:()=><NewListingButton onPress={()=>navigation.navigate(routes.SALE)}/>, 
               tabBarIcon:({color,size}) => <MaterialCommunityIcons 
          name="plus-circle" color={color} 
          size={size} />})}/>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+	Alert,
 	Button,
 	Image,
 	Platform,
@@ -37,13 +38,34 @@ import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import AuthNavigator from './app/navigation/AuthNavigator';
 import navigationTheme from './app/navigation/navigationTheme';
 import AppNavigator from './app/navigation/AppNavigator';
+import BarCodePicker from './app/components/BarCodePicker';
 
 
 
 export default function App() {
+
+
+		  
 	
 	return <NavigationContainer theme={navigationTheme}>
 		{/* <AuthNavigator/> */}
 		<AppNavigator/>
 	</NavigationContainer>
+	return <Screen>
+	<BarCode/>
+	</Screen>
+
+	//return <BarCodePicker/>
 }  
+
+const styles = StyleSheet.create({
+	button:{
+		backgroundColor: 'red',
+		borderRadius: 25,
+		justifyContent: 'center',
+		alignItems: 'center',
+		padding: 15,
+		width: '100%',
+		marginVertical: 10
+	}
+})

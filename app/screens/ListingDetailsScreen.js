@@ -3,13 +3,14 @@ import { Image, View, StyleSheet } from 'react-native';
 import AppText from '../components/AppText';
 import ListItem from '../components/ListItem';
 import colors from '../config/colors';
+import BASE_API from '../config/config' 
 function ListingDetailsScreen({route}) {
 	const listing = route.params
 	return (
 		<View>
 			<Image
 				style={styles.image}
-				source={listing.image}
+				source={{uri:`${BASE_API.BASE_API}${listing.image}`}}
 			/>
 			<View style={styles.detailsContainer}>
 				<AppText style={styles.title}>{listing.title}</AppText>
