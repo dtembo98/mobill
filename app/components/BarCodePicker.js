@@ -9,14 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 function BarCodePicker({navigation}) { 
 
    
-    const [showScanner,setShowScanner] = useState(false)
-
-    useEffect(() => {
-        (async () => {
-          const { status } = await BarCodeScanner.requestPermissionsAsync();
-          setHasPermission(status === 'granted');
-        })();
-      }, []);
+    
 
 
 const handlePress = () =>
@@ -27,10 +20,11 @@ const handlePress = () =>
 
    return (
 <TouchableWithoutFeedback  onPress ={handlePress}>
-        <View style={styles.container}>
-
-             <AntDesign name="qrcode" color={colors.medium} size={40} />
-    
+        <View style={styles.wrapper}>
+            <View style={styles.container}>
+                  <AntDesign name="qrcode" color={colors.medium} size={200} />
+            </View>
+            <Text>Scan A Product Barcode To be Added</Text>
         </View>
      
 </TouchableWithoutFeedback>
@@ -43,9 +37,16 @@ const styles = StyleSheet.create({
      borderRadius:15,
      justifyContent:"center",
      alignItems:"center",
-     height:100,
-     width:100,
-     marginLeft:20
+     height:200,
+     width:200,
+     marginBottom:40
+
+ },
+ wrapper:{
+   flex:1,
+   
+   justifyContent:"center",
+   alignItems:'center'
  }
 })
 export default BarCodePicker;

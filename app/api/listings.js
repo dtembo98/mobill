@@ -17,11 +17,14 @@ const addListing = (listing ,onUploadProgress)=>{
         type:'image/jpeg',
         uri:image
     }))
+    console.log("this from api before being sent",data)
 
-    if(listing.location)
-{
-    data.append('location',JSON.stringify(listing.location))
-}
+//     if(listing.barcode)
+// {
+//     data.append('barcode',JSON.stringify(listing.barcode))
+//     console.log(" hey",listing.barcode)
+
+// }
 return client.post(endpoint,data,{
     onUploadProgress:(progress) =>onUploadProgress(progress.loaded / progress.total)
 })

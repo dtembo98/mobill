@@ -42,7 +42,7 @@ const loadListings =async() =>
 	const response = await listingsApi.getListings()
 	setLoading(false)
 
-	console.log(response.data)
+	// console.log(response.data)
 	setListings(response.data.data);
 }
 
