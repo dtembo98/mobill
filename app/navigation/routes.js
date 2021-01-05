@@ -6,12 +6,13 @@ export default Object.freeze(
         LOGIN:'Login',
         WELCOME:'Welcome',
         REGISTER:'Register',
-        LISTINGS:'Listing',
+        LISTINGS:'Listings',
         LISTINGS_EDIT:'ListingEdit',
         FEED:'Feed',
         SALE:'Sale',
         BARCODE:'Barcode',
         CHECKOUT:'Checkout',
-        SCANNER:'Scanner'
+        SCANNER:'Scanner',
+        PRODUCT:'Product'
     }
 )

@@ -3,9 +3,9 @@ import {useFormikContext} from 'formik'
 import AppTextInput from '../AppTextInput';
 import ErrorMessage from './ErrorMessage';
 
-function AppFormField({name,width, func ,...otherProps }) {
+function AppFormField({name,width ,...otherProps }) {
    
-    const barcode = otherProps.barcode
+
     
     const {
         touched,
@@ -14,19 +14,17 @@ function AppFormField({name,width, func ,...otherProps }) {
         values,
         errors
        } = useFormikContext()
-    //     values.barcode = barcode
-    //    console.log('this value is from listings barcode', values)
-       
+    
     return (
        <>
         <AppTextInput
         onBlur = {() =>setFieldTouched(name)}
-        onChangeText = {func}
+        onChangeText = {(text) =>setFieldValue(name,text)}
         value={values[name]}
         width={width}
         {...otherProps}
         />
-        {/* <ErrorMessage error={errors[name]}  visible={touched[name]}/> */}
+        <ErrorMessage error={errors[name]}  visible={touched[name]}/>
        </>
     );
 }

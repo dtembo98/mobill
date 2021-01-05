@@ -21,7 +21,7 @@ function SaleScreen({navigation}) {
     <View style={styles.ButtonsContainer}>
         <AppButton title='Sell Product' onPress={() =>navigation.navigate(routes.BARCODE)} />
 
-        <AppButton title='Add Product'  onPress={() =>navigation.navigate(routes.LISTINGS_EDIT)} color='secondary' />
+        <AppButton title='Add Product'  onPress={() =>navigation.navigate(routes.PRODUCT)} color='secondary' />
     </View>
     </Screen>
   );

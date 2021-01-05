@@ -30,7 +30,24 @@ return client.post(endpoint,data,{
 })
 }
 
+const getProduct = (barcode) =>
+{
+   return client.get(`${endpoint}/barcode/${barcode}`)
+}
+const buyProduct = (barcode,data) => {
+  
+    return client.post(`${endpoint}/buy/${barcode}`,data)
+}
+
+const checkSaleStatus = (id) =>
+{
+    return client.get(`${endpoint}/status/${id}`)
+} 
+
 export default {
     getListings,
-    addListing
+    addListing,
+    getProduct,
+    buyProduct,
+    checkSaleStatus
 }

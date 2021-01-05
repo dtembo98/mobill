@@ -9,17 +9,15 @@ import {
 } from '../components/forms';
 import FormImagePicker from '../components/forms/FormImagePicker';
 import Screen from '../components/Screen';
-import useLocation from '../hooks/useLocation'
 import listingsApi from '../api/listings'
 import UploadScreen from './UploadScreen';
-import BarCodePicker from '../components/BarCodePicker';
-import ImageInput from '../components/ImageInput';
+import routes from '../navigation/routes'
 
 
 
 const validationSchema = Yup.object().shape({
 	title: Yup.string().required().min(1).label('Title'),
-	price: Yup.number().required().min(1).max(10000).label('Price'),
+	price: Yup.number().required().min(0.01).max(10000).label('Price'),
 	description: Yup.string().label('Description'),
 	quantity: Yup.number().required().min(1).max(10000).label('Price'),
 	images: Yup.array().min(1, 'Please select at least one image'),
@@ -63,15 +61,16 @@ const handleSubmit = async(listing,{resetForm}) =>
 		if(!result.ok) {
 			setUploadVisible(false)
 			console.log(result)
-			return alert('Could not save the product')
+			return alert(`Could not save the product: ${result.data.error}`)
 		}
 		resetForm()
+		navigation.navigate(routes.LISTINGS)
 	}
 	
 	return (
 		<Screen style={styles.container}>
 
-			{ !barcode ? 	<BarCodePicker navigation={navigation}/>:<>
+			
 			
 			<UploadScreen onDone={() =>	setUploadVisible(false)} progress={progress} visible={uploadVisible}/>
 			<Form
@@ -86,9 +85,8 @@ const handleSubmit = async(listing,{resetForm}) =>
 				validationSchema={validationSchema}>
 				<View style={styles.pickers}>
 				<FormImagePicker name='images' 	/> 
-	
 				</View>
-
+          
 				<FormField maxLength={255} name='title' placeholder='Title' />
 				<FormField
 					keyboardType='numeric'
@@ -120,7 +118,7 @@ const handleSubmit = async(listing,{resetForm}) =>
 				     placeholder={barcode ? barcode :""}
 				/>
 				<SubmitButton  title='Add Product' />
-			</Form></>}
+			</Form>
 			
 		</Screen>
 	);

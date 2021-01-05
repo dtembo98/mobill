@@ -6,6 +6,7 @@ import SaleScreen from '../screens/SaleScreen'
 import BarCodeScreen from "../screens/BarCodeScreen";
 import CheckOutScreen from "../screens/CheckOutScreen";
 import Scanner from '../screens/Scanner'
+import BarCodePicker from '../components/BarCodePicker'
 
 
 
@@ -19,6 +20,8 @@ const FeedNavigator = () =>
         <Stack.Screen name="Barcode" component={BarCodeScreen}/>
         <Stack.Screen name="Checkout" component={CheckOutScreen}/>
         <Stack.Screen name="Scanner" component={Scanner}/>
+        <Stack.Screen name="Product" component={BarCodePicker}/>
+
     </Stack.Navigator>
 )
 export default FeedNavigator

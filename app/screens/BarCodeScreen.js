@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, Alert} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import routes from '../navigation/routes'
+import listingsApi from '../api/listings'
 
 export default function BarCodeScreen({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -14,11 +15,21 @@ export default function BarCodeScreen({navigation}) {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
-    Alert.alert('Product',`Bar code with type ${type} and data ${data} has been scanned cool!`,
+    const results = await listingsApi.getProduct(data)
+    if(!results.ok)
+    { 
+     return alert(`${results.data.error}`)
+    }
+    const  product = results.data.data
+    Alert.alert('Product',`product with the details found 
+    Title: ${product.title}
+    Barcode: ${product.barcode}
+    Price: ${product.price}
+    `,
               [
-                  {text:'continue to check out',onPress:() =>navigation.navigate(routes.CHECKOUT)},
+                  {text:'continue to check out',onPress:() =>navigation.navigate(routes.CHECKOUT,{product})},
                   {text:'No'}
                 ])
   };
