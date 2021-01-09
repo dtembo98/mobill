@@ -17,7 +17,7 @@ const addListing = (listing ,onUploadProgress)=>{
         type:'image/jpeg',
         uri:image
     }))
-    console.log("this from api before being sent",data)
+  
 
 //     if(listing.barcode)
 // {
@@ -41,6 +41,7 @@ const buyProduct = (barcode,data) => {
 
 const checkSaleStatus = (id) =>
 {
+    
     return client.get(`${endpoint}/status/${id}`)
 } 
 

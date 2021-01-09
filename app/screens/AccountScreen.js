@@ -5,32 +5,29 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import Icon from '../components/Icon';
 import colors from '../config/colors';
 import ListItemSeparator from '../components/ListItemSeparator';
+import useAuth from '../auth/useAuth';
 
 const menuItems = [
 	{
-		title: 'My Listings',
+		title: 'My Products',
 		icon: {
 			name: 'format-list-bulleted',
 			backgroundColor: colors.primary,
 		},
 		targetScreen:"Messages"
-	},
-	{
-		title: 'My Messages',
-		icon: {
-			name: 'email',
-			backgroundColor: colors.secondary,
-		},
-		targetScreen:"Messages"
-	},
+	}
 ];
 function AccountScreen({navigation}) {
+	
+  const {user,logOut} = useAuth()
+
+
 	return (
 		<Screen style={styles.screen}>
 			<View style={styles.container}>
 				<ListItem
-					title='David Tembo'
-					subTitle='davidtembo51@gmail.com'
+					title={user.name}
+					subTitle={user.phone}
 					image={require('../assets/image_3.png')}
 				/>
 			</View>
@@ -55,7 +52,9 @@ function AccountScreen({navigation}) {
 			</View>
 			<ListItem
 				title='Log Out'
-				IconComponent={<Icon name='logout' backgroundColor='#ffe66d' />}
+				onPress={() =>logOut()} 
+				IconComponent={<Icon name='logout' backgroundColor='#ffe66d'
+				/>}
 			/>
 		</Screen>
 	);

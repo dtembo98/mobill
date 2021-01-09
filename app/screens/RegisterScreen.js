@@ -1,24 +1,51 @@
-import React from "react";
+import React,{useState} from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
-
+import { AppForm, AppFormField, ErrorMessage, SubmitButton } from "../components/forms";
+import userApi from '../api/users'
+import useAuth from "../auth/useAuth";
+import authApi from '../api/auth'
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
-  email: Yup.string().required().email().label("Email"),
+  phone: Yup.string().required().label("Phone number"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
+
 function RegisterScreen() {
+  const auth = useAuth()
+const [error,setError] = useState()
+
+  const handleSubmit = async(userInfo) =>
+  {
+    const result = await userApi.register(userInfo)
+    if(!result.ok) 
+    {
+      if(result.data) setError(result.data.error)
+      else{
+        setError("An unexpected error occured.")
+        console.log(result)
+      }
+      return
+    }
+    const {data} = await authApi.login(userInfo.phone,userInfo.password)
+    console.log("fro reg scren",data.token)
+    auth.logIn(data.token)
+
+
+  }
+
+
   return (
     <Screen style={styles.container}>
       <AppForm
-        initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        initialValues={{ name: "", phone: "", password: "" }}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
+      {error &&   <ErrorMessage error={error} visible={true}/> }
         <AppFormField
           autoCorrect={false} 
           icon="account"
@@ -28,11 +55,11 @@ function RegisterScreen() {
         <AppFormField
           autoCapitalize="none"
           autoCorrect={false}
-          icon="email"
-          keyboardType="email-address"
-          name="email"
-          placeholder="Email"
-          textContentType="emailAddress"
+          icon="phone"
+          keyboardType="numeric"
+          name="phone"
+          placeholder="Mobile number"
+         
         />
         <AppFormField
           autoCapitalize="none"

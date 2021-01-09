@@ -7,6 +7,7 @@ import routes from '../navigation/routes'
 import listingsApi from '../api/listings'
 import BASE_API from '../config/config'
 import ActivityIndicator from '../components/ActivityIndicator';
+import AppText from '../components/AppText';
 // const listings = [
 // 	{
 // 		id: 1,
@@ -28,9 +29,11 @@ import ActivityIndicator from '../components/ActivityIndicator';
 // 	},
 // ];
 function ListingsScreen({navigation}) {
-
+    
 	const [listings,setListings] = useState()
 	const [loading,setLoading] = useState(false)
+	const [isProducts,setIsProdcuts] = useState()
+	const [isChange,setChange] = useState()
 
 	useEffect(() => {
 		loadListings()
@@ -44,11 +47,14 @@ const loadListings =async() =>
 
 	// console.log(response.data)
 	setListings(response.data.data);
+	if(response.data.data.length === 0)  return setIsProdcuts(false)
+	setIsProdcuts(true)
 }
 
 	return (
 		<Screen style={styles.screen}>
-			<ActivityIndicator visible={ loading}/>
+			{!isProducts ? <AppText>No Products Added!</AppText> :
+			<><ActivityIndicator visible={ loading}/>
 			<FlatList
 				data={listings}
 				keyExtractor={(listing) => listing.id.toString()}
@@ -60,7 +66,7 @@ const loadListings =async() =>
 						onPress={()=>navigation.navigate(routes.LISTING_DETAILS,item)}
 					/>
 				)}
-			/>
+			/></>}
 		</Screen>
 	);
 }
