@@ -132,6 +132,8 @@ function CheckOutScreen({navigation,route}) {
 
 
  return (
+   <>
+  <ActivityIndicator visible = {loading}  />
 <Screen style={styles.container}>
   {product && <AppText style={{fontSize:30,marginBottom:30}}>Total Amount {product.price }</AppText>}
     {product && 
@@ -141,7 +143,7 @@ function CheckOutScreen({navigation,route}) {
       <AppText> Barcode     {product.barcode}</AppText>
     </View>}
    
-     {loading?  <ActivityIndicator visible = {loading}  />
+   
      : <AppForm
        initialValues={{ quantity: '1', mobile_wallet: "" }}
         onSubmit={handleSubmit}
@@ -169,7 +171,9 @@ function CheckOutScreen({navigation,route}) {
         <SubmitButton title="Checkout" />
       </AppForm>}
     </Screen>
+    </>
   );
+
 }
 
 const styles = StyleSheet.create({
