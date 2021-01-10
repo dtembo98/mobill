@@ -6,6 +6,7 @@ import {ErrorMessage ,AppForm,AppFormField,SubmitButton } from '../components/fo
 import authApi from '../api/auth'
 import useAuth from '../auth/useAuth';
 import useApi from '../hooks/useApi';
+import ActivityIndicator from '../components/ActivityIndicator';
 
 const validationSchema = yup.object().shape({
     phone:yup.string().required().label("Phone number"),
@@ -33,6 +34,8 @@ function LoginScreen(props) {
     }
     
     return (
+        <>
+        <ActivityIndicator visible={loginApi.loading}/>
     <Screen style={styles.container}>
         <Image 
         style={styles.logo}
@@ -75,6 +78,7 @@ function LoginScreen(props) {
     
       
     </Screen>
+    </>
     );
 }
 const styles = StyleSheet.create({
