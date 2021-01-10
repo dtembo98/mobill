@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { FlatList,StyleSheet } from 'react-native';
+import {AppButton as Button} from "../components/AppButton";
 import Screen from '../components/Screen';
 import Card from '../components/Card';
 import colors from '../config/colors'
@@ -8,55 +9,26 @@ import listingsApi from '../api/listings'
 import BASE_API from '../config/config'
 import ActivityIndicator from '../components/ActivityIndicator';
 import AppText from '../components/AppText';
-// const listings = [
-// 	{
-// 		id: 1,
-// 		title: 'water',
-// 		price: 100,
-// 		image: require('../assets/prod_3.jpg'),
-// 	},
-// 	{
-// 		id: 2,
-// 		title: 'Beer',
-// 		price: 10,
-// 		image: require('../assets/prod_4.jpg'),
-// 	},
-// 	{
-// 		id: 3,
-// 		title: 'suger',
-// 		price: 200,
-// 		image: require('../assets/prod_5.jpg'),
-// 	},
-// ];
+import useApi from '../hooks/useApi';
+ 
 function ListingsScreen({navigation}) {
-    
-	const [listings,setListings] = useState()
-	const [loading,setLoading] = useState(false)
-	const [isProducts,setIsProdcuts] = useState()
-	const [isChange,setChange] = useState()
+	
+	 const getListingsApi =  useApi(listingsApi.getListings)
 
 	useEffect(() => {
-		loadListings()
-		console.log(listings)
-		}, [])
-const loadListings =async() =>
-{
-	setLoading(true)
-	const response = await listingsApi.getListings()
-	setLoading(false)
-
-	// console.log(response.data)
-	setListings(response.data.data);
-	if(response.data.data.length === 0)  return setIsProdcuts(false)
-	setIsProdcuts(true)
-}
+		getListingsApi.request()
+			}, [])
 
 	return (
 		<Screen style={styles.screen}>
-			{!isProducts ? <AppText>No Products Added!</AppText> :
-			<><ActivityIndicator visible={ loading}/>
+		{getListingsApi.error && 
+		<>
+			<AppText> Couldn't retrieve the products. </AppText>
+			<Button title="Retry" onPress={getListingsApi.request}/>
+		</>}
+	        <ActivityIndicator visible={getListingsApi.loading} />
 			<FlatList
-				data={listings}
+				data={getListingsApi.data}
 				keyExtractor={(listing) => listing.id.toString()}
 				renderItem={({ item }) => (
 					<Card
@@ -66,7 +38,7 @@ const loadListings =async() =>
 						onPress={()=>navigation.navigate(routes.LISTING_DETAILS,item)}
 					/>
 				)}
-			/></>}
+			/>
 		</Screen>
 	);
 }

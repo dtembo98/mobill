@@ -17,10 +17,10 @@ export default function Scanner({navigation}) {
       
         const handleBarCodeScanned = ({ type, data }) => {
           setScanned(true);
-          Alert.alert('Product',`Bar code with type ${type} and data ${data} has been scanned cool!`,
+          Alert.alert('Product',`Bar code with type ${type} and data ${data} has been scanned!`,
           [
-              {text:'continue to adding a product',onPress:() =>navigation.navigate(routes.LISTINGS_EDIT,{barcode:data})},
-              {text:'No'}
+              {text:'proceed to adding a product',onPress:() =>navigation.navigate(routes.LISTINGS_EDIT,{barcode:data})},
+              {text:'Go back',onPress:() =>navigation.navigate(routes.SALE)}
             ])
           setVisible(false)
         

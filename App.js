@@ -6,6 +6,7 @@ import navigationTheme from './app/navigation/navigationTheme';
 import AuthContext from './app/auth/context';
 import authStorage from './app/auth/storage';
 import {AppLoading} from 'expo'
+import OfflineNotice from './app/components/OfflineNotice';
 
 
 
@@ -24,12 +25,16 @@ if(!isReady)
 }
 		  
 	
-	return <AuthContext.Provider value = {{user,setUser}}>
+	return ( 
+	<>
+	    <OfflineNotice/>		
+		<AuthContext.Provider value = {{user,setUser}}>
 		<NavigationContainer theme={navigationTheme}>
-	{user ? <AppNavigator/> :<AuthNavigator/> }
-	</NavigationContainer>
-	
-	</AuthContext.Provider>
+		{user ? <AppNavigator/> :<AuthNavigator/> }
+		</NavigationContainer>	
+		</AuthContext.Provider>
+	</>
+	)
 
 }  
 

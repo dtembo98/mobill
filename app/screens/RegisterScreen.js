@@ -7,6 +7,11 @@ import { AppForm, AppFormField, ErrorMessage, SubmitButton } from "../components
 import userApi from '../api/users'
 import useAuth from "../auth/useAuth";
 import authApi from '../api/auth'
+import useApi from "../hooks/useApi";
+import ActivityIndicator from "../components/ActivityIndicator";
+
+
+
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
   phone: Yup.string().required().label("Phone number"),
@@ -15,12 +20,17 @@ const validationSchema = Yup.object().shape({
 
 
 function RegisterScreen() {
+
+  const registerApi = useApi(userApi.register)
+  const loginApi = useApi(authApi.login)
+
   const auth = useAuth()
-const [error,setError] = useState()
+  const [error,setError] = useState()
 
   const handleSubmit = async(userInfo) =>
   {
-    const result = await userApi.register(userInfo)
+    const result = await registerApi.request(userInfo)
+    console.log("from registration screen",result)
     if(!result.ok) 
     {
       if(result.data) setError(result.data.error)
@@ -30,8 +40,10 @@ const [error,setError] = useState()
       }
       return
     }
-    const {data} = await authApi.login(userInfo.phone,userInfo.password)
-    console.log("fro reg scren",data.token)
+    // const {data} = await authApi.login(userInfo.phone,userInfo.password)
+    // auth.logIn(data.token)
+
+    const {data} = await loginApi.request(userInfo.phone,userInfo.password)
     auth.logIn(data.token)
 
 
@@ -40,6 +52,8 @@ const [error,setError] = useState()
 
   return (
     <Screen style={styles.container}>
+
+      <ActivityIndicator visible={registerApi.loading || loginApi.loading}/>
       <AppForm
         initialValues={{ name: "", phone: "", password: "" }}
         onSubmit={handleSubmit}
