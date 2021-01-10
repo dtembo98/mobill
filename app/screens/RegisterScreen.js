@@ -51,9 +51,9 @@ function RegisterScreen() {
 
 
   return (
+    <>
+     <ActivityIndicator visible={registerApi.loading || loginApi.loading}/>
     <Screen style={styles.container}>
-
-      <ActivityIndicator visible={registerApi.loading || loginApi.loading}/>
       <AppForm
         initialValues={{ name: "", phone: "", password: "" }}
         onSubmit={handleSubmit}
@@ -85,8 +85,11 @@ function RegisterScreen() {
           textContentType="password"
         />
         <SubmitButton title="Register" />
+
       </AppForm>
+    
     </Screen>
+    </>
   );
 }
 

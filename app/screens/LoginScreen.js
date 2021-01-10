@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import {ErrorMessage ,AppForm,AppFormField,SubmitButton } from '../components/forms/index'
 import authApi from '../api/auth'
 import useAuth from '../auth/useAuth';
+import useApi from '../hooks/useApi';
 
 const validationSchema = yup.object().shape({
     phone:yup.string().required().label("Phone number"),
@@ -12,13 +13,16 @@ const validationSchema = yup.object().shape({
 })
 
 function LoginScreen(props) {
-const {logIn} = useAuth()
-const [loginFailed,setLoginFailed] = useState(false)
+
+    const loginApi = useApi(authApi.login)
+
+    const {logIn} = useAuth()
+    const [loginFailed,setLoginFailed] = useState(false)
 
     const handleSubmit = async({phone,password}) =>
     {
     
-      const result = await authApi.login(phone,password) 
+      const result = await loginApi.request(phone,password) 
       console.log(result)
       if(!result.ok) return setLoginFailed(true)
       setLoginFailed(false)
